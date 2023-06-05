@@ -1,0 +1,29 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Auction - Sign Up{% endblock title %}
+
+
+{% block heading %}
+Register
+{% endblock %}
+
+{% block form %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        {{ form|crispy }}
+    </fieldset>
+
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Sign Up</button>
+    </div>
+    <div>
+        <small class="text-muted">
+            Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In.</a>
+        </small>
+    </div>
+</form>
+
+{% endblock form %}

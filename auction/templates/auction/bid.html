@@ -1,0 +1,46 @@
+{% extends 'users/base.html' %}
+
+{% block heading %}
+Bid for {{ item.name }}
+{% endblock %}
+
+{% block form %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="">Item Description: </label>
+        <input class="form-control" value="{{ item.description }}" readonly>
+        {% if item.current_bid != Null %}
+          <label for="">Current Bid: </label>
+          <input
+            type="text"
+            class="form-control"
+            value="{{ item.current_bid }}"
+            readonly
+          />
+        {% else %}
+          <label for="">Start Bid: </label>
+          <input
+            type="text"
+            class="form-control"
+            value="{{ item.initial_bid }}"
+            readonly
+          />
+        {% endif %}
+        <label for="bid_ammount">Your bid: </label>
+        <input
+          type="number"
+          class="form-control"
+          name="bid_ammount"
+          value="{{ item.current_bid }}"
+          required
+        />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Bid</button>
+    </div>
+</form>
+
+
+{% endblock form %}

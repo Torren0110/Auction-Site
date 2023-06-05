@@ -1,0 +1,107 @@
+{% extends 'auction/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'auction/style.css' %}">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+{% endblock css %}
+
+{% block title %} Auction - Home {% endblock title %}
+
+{% block content %}
+
+{% if items_won %}
+    {% for item in items_won %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            You were the highest bidder for: <a href="{% url 'pay' pk=item.pk %}"> {{ item.name }} </a>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if items_sold %}
+    {% for item in items_sold %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        You sold: <a href="{% url 'ship' pk=item.pk %}"> {{ item.name }} </a>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+{% endif %}
+
+
+<button id="toTopBtn" class="invisible"><i class="fa-solid fa-arrow-up"></i></button>
+
+<div class="container">
+    {% for item in live_items %}
+    <div class="bid-box">
+        <div class="image">
+            {% if item.1 %}
+            <img src="{{ item.1.photo.url }}"/>
+            {% else %}
+            <img src="{{ default_img_url }}"/>
+            {% endif %}
+        </div>
+        <div class="prod-details">
+            <div class="content">
+                <p><a style="text-decoration: none;" href="{% url 'item' pk=item.0.pk %}"> Title: <span>{{ item.0.name|title }}</span></a></p>
+                <p>Author: <span>{{ item.0.user.username }} </span></p>
+            </div>
+            <br>
+            
+            <div class="desc">
+                <h1>Description:</h1>
+                <p>
+                    {{ item.0.description }}
+                </p>
+            </div>
+        </div>
+        <div class="bid-details">
+            {% if item.0.current_bid != None %}
+            <p>Current Bid: <span>₹ {{ item.0.current_bid }}</span></p>
+            {% else %}
+            <p>Start Bid: <span>₹ {{ item.0.initial_bid }}</span></p>
+            {% endif %}
+            <p><span>{{ now|timesince:item.0.end_time }} left</span></p>
+            <a href="{% url 'bid' pk=item.0.pk %}" style="text-decoration: none;"><button>Bid</button></a>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% for item in unlive_itmes %}
+    <div class="bid-box">
+        <div class="image">
+            {% if item.1 %}
+            <img src="{{ item.1.photo.url }}"/>
+            {% else %}
+            <img src="{{ default_img_url }}"/>
+            {% endif %}
+        </div>
+        <div class="prod-details">
+            <div class="content">
+                <p><a style="text-decoration: none;" href="{% url 'item' pk=item.0.pk %}"> Title: <span>{{ item.0.name|title }}</span></a></p>
+                <p>Author: <span>{{ item.0.user.username }} </span></p>
+            </div>
+            <br>
+            
+            <div class="desc">
+                <h1>Description:</h1>
+                <p>
+                    {{ item.0.description }}
+                </p>
+            </div>
+        </div>
+        <div class="bid-details">
+            <p>Start Bid: <span>₹ {{ item.0.initial_bid }}</span></p>
+            <p>Starts in : <span>{{ now|timesince:item.0.start_time }}</span></p>
+            <a href="{% url 'bid' pk=item.0.pk %}" style="text-decoration: none;"><button>Save</button></a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
+
+{% block script %}
+<script src="{% static 'auction/homeScript.js' %}"></script>
+{% endblock %}

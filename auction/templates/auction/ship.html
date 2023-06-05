@@ -1,0 +1,28 @@
+{% extends 'users/base.html' %}
+
+
+{% block heading %}
+Ship {{ item.name }}
+{% endblock %}
+
+{% block form %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="">Address: </label>
+        <input class="form-control" value="{{ item.address }}" readonly>
+        <label for="">Paid Ammount: </label>
+        <input
+          type="text"
+          class="form-control"
+          value="{{ item.current_bid }}"
+          readonly
+        />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Ship</button>
+    </div>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'auction/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'auction/forms.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row col-md-6 col-md-offset-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading text-center">
+            <h1>{% block heading %} Registration Form {% endblock %}</h1>
+          </div>
+          <div class="panel-body">
+              {% block form %}
+          
+              {% endblock form %}
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock content %}

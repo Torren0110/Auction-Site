@@ -1,0 +1,22 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block heading %}
+Sell Here
+{% endblock %}
+
+{% block form %}
+
+<form action="" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ item_form|crispy }}
+    {{ image_formset.management_form }}
+    {% for form in image_formset %}
+        {{ form|crispy }}
+    {% endfor %}
+
+    <button class="btn btn-outline-info" type="submit">Submit</button>
+
+</form>
+
+{% endblock form %}

@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+:root {
+    --green: #348aa7;
+    --black: #444;
+    --blue: #00427f;
+    --light-color: #777;
+    --box-shadow: .5rem .5rem 0 rgba(22, 160, 133, .2);
+    --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .15);
+    --border: .2rem solid var(--green);
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    transition: all .2s ease-out;
+    text-decoration: none;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 7rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    width: 1rem;
+}
+
+html::-webkit-scrollbar-track {
+    background: #d3d6e3;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: #348aa7;
+    border-radius: 10px;
+}
+
+section {
+    padding: 2rem 5%;
+    margin: 0;
+}
+
+section:nth-child(even) {
+    background: #f5f5f5;
+}
+
+#but {
+    margin-left: 3.5rem;
+}
+
+.heading {
+    text-align: center;
+    padding-bottom: 2rem;
+    text-shadow: var(--text-shadow);
+    text-transform: uppercase;
+    color: var(--black);
+    font-size: 4rem;
+    letter-spacing: .3rem;
+}
+
+#webdev {
+    /* text-align: left; */
+    font-size: 3.5rem;
+    margin-left: -3rem;
+}
+
+.heading span {
+    text-transform: uppercase;
+    color: var(--green);
+}
+
+.portfolio {
+    text-shadow: var(--text-shadow);
+    text-transform: uppercase;
+    color: var(--black);
+    font-size: 3.5rem;
+    letter-spacing: .3rem;
+    padding-left: 2rem;
+}
+
+.portfolio span {
+    text-transform: uppercase;
+    color: var(--green);
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.2rem;
+    border: var(--border);
+    border-radius: 2.8rem;
+    box-shadow: var(--box-shadow);
+    color: var(--green);
+    cursor: pointer;
+    font-size: 1.7rem;
+    background: #fff;
+}
+
+
+.btn:hover {
+    background: var(--green);
+    color: #fff;
+}
+
+
+
+#icon {
+    /* display:none; */
+    position: fixed;
+    z-index: 999999;
+    top: 50%;
+    left: 0%;
+    margin: 0;
+    padding: 0;
+}
+
+#icon i {
+    color: #fff;
+    font-size: 25px;
+}
+
+#icon div {
+    padding: 15px;
+    margin: 0;
+    border-bottom: 1.5px solid #000;
+}
+
+#icon #insta {
+    background: rgb(233, 97, 183);
+}
+
+#icon #insta:hover {
+    background: rgb(255, 15, 167);
+}
+
+#icon #whatsapp {
+    background: rgb(91, 196, 91);
+    border-bottom: none;
+}
+
+#icon #whatsapp:hover {
+    background: rgb(3, 158, 3);
+}
+
+#icon #linkedin {
+    background: rgb(119, 205, 239);
+}
+
+#icon #linkedin:hover {
+    background: rgb(13, 167, 228);
+}
+
+#icon #facebook {
+    background: #fff;
+}
+
+#icon #facebook:hover {
+    background: #ddd;
+}
+
+#icon #facebook i {
+    color: rgb(0, 140, 168);
+}
+
+.header {
+    padding: 1rem 9%;
+    padding-left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .2);
+    display: flex;
+    align-items: center;
+    /* justify-content: space; */
+    background: #f3f4f9;
+}
+
+.header img {
+    width: 14rem;
+    height: 6rem;
+    margin-left: 2rem;
+}
+
+.navbar {
+    margin-left: 10rem;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar a {
+    color: var(--black);
+}
+
+.header .navbar li {
+
+    margin-left: 1rem;
+    list-style-type: none;
+    border-radius: .5rem;
+    padding: .8rem 1.3rem;
+}
+
+.header li a {
+    background-image: linear-gradient(to right,
+            #54b3d6,
+            #54b3d6 50%,
+            #000 50%);
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    padding: 5px 0;
+    font-size: 1.7rem;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+    font-weight: 700;
+}
+
+.header li a:before {
+    content: '';
+    background: #54b3d6;
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.header li a:hover {
+    background-position: 0;
+}
+
+.header li a:hover::before {
+    width: 100%;
+}
+
+#myBtn {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Fixed/sticky position */
+    bottom: 30px;
+    /* Place the button at the bottom of the page */
+    right: 30px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    /* Remove borders */
+    outline: none;
+    /* Remove outline */
+    background-color: rgb(180, 179, 179);
+    /* Set a background color */
+    background-color: var(--green);
+    color: #fff;
+    /* Text color */
+    cursor: pointer;
+    /* Add a mouse pointer on hover */
+    padding: 10px 15px;
+    /* Some padding */
+    border-radius: 10px;
+    /* Rounded corners */
+    font-size: 18px;
+    /* Increase font size */
+}
+
+#myBtn:hover {
+    background-color: var(--blue);
+}
+
+
+.box {
+    margin-left: 10rem;
+    height: 40px;
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 30px;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.box input {
+    width: 380px;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+
+.box a .fas {
+    color: #54b3d6;
+    font-size: 18px;
+}
+
+#bid-box1 {
+    margin-top: 12rem;
+
+}
+
+.bid-box {
+    display: flex;
+    margin-top: 2rem;
+    width: 90%;
+    height: 220px;
+    margin: 25px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding-right: 0;
+}
+
+.bid-box .image {
+    width: 25%;
+    /* background: #000; */
+}
+
+.bid-box .image img {
+    width: 250px;
+    height: 190px;
+}
+
+.bid-box .prod-details {
+    width: 50%;
+    /* background:green; */
+    padding: .7rem;
+    padding-left: 2rem;
+}
+
+.bid-box .prod-details .content {
+    display: flex;
+}
+
+.bid-box .prod-details .desc h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #348aa7;
+}
+
+.bid-box .prod-details .desc p {
+    color: #222;
+    font-size: 1.2rem;
+}
+
+.bid-box .bid-details button {
+    padding: 6px 20px;
+    border-radius: 4px;
+    background: #348aa7;
+    color: #fff;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+.bid-box .content p {
+    font-size: 1.7rem;
+    margin-right: 2rem;
+    font-weight: 700;
+    color: #348aa7;
+}
+
+.bid-box .content p span {
+    font-weight: 500;
+    color: #222;
+}
+
+.bid-box .bid-details {
+    width: 25%;
+}
+
+.bid-box .content .rating {
+    display: flex;
+}
+
+.bid-box .content .rating span {
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+.bid-box .content .rating .stars {
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.bid-box .content .rating .stars i {
+    color: #ece822;
+}
+
+.bid-box .bid-details {
+    /* background: yellow; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.bid-box .bid-details p:nth-child(2) {
+    color: #222;
+}
+
+.bid-box .bid-details p:nth-child(2) span {
+    color: orangered;
+}
+
+.bid-box .bid-details p {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.bid-box .bid-details p span {
+    font-weight: 400;
+}
