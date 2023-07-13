@@ -181,3 +181,29 @@ def getSearch(request):
         return searchResults
 
     return HttpResponse()
+
+def search(request):
+    if(request.method == "GET"):
+        searchString = request.GET['search_string']
+
+        live_items = Item.objects.filter(name__contains = searchString, start_time__lte = timezone.now(), end_time__gt = timezone.now())
+        live_items = [[item, ItemPhoto.objects.filter(item = item).first()] for item in live_items]
+    
+        unlive_items = Item.objects.filter(name__contains = searchString, start_time__gt = timezone.now())
+        unlive_items = [[item, ItemPhoto.objects.filter(item = item).first()] for item in unlive_items]
+
+        if(not len(live_items) and not len(unlive_items)):
+            messages.warning(request, "No Items Match.")
+
+        context = {
+            'live_items' : live_items,
+            'unlive_itmes' : unlive_items,
+            'now' : timezone.now(),
+            'default_img_url' : DEFAULT_IMG_URL,
+            'searchString' : searchString,
+        }
+
+        return render(request, 'auction/home.html', context = context)
+
+    messages.warning(request, "No Items Match.")
+    return redirect('home')

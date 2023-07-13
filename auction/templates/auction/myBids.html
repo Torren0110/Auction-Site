@@ -2,15 +2,14 @@
 
 {% block content %}
 
-
 <div class="container">
     {% for item in items %}
     <div class="bid-box">
         <div class="image">
             {% if item.1 %}
-            <img src="{{ item.1.photo.url }}"/>
+                <img src="{{ item.1.photo.url }}"/>
             {% else %}
-            <img src="{{ default_img_url }}"/>
+                <img src="{{ default_img_url }}"/>
             {% endif %}
         </div>
         <div class="prod-details">
@@ -28,21 +27,28 @@
             </div>
         </div>
         <div class="bid-details">
-            {% if item.0.current_bid != NULL %}
-            <p>Initial Bid: <span>₹ {{ item.0.current_bid }}</span></p>
+            {% if item.0.current_bid %}
+                <p>Your Bid: <span>₹ {{ item.0.current_bid }}</span></p>
             {% else %}
-            <p>Start Bid: <span>₹ {{ item.0.initial_bid }}</span></p>
+                <p>Start Bid: <span>₹ {{ item.0.initial_bid }}</span></p>
             {% endif %}
-            <p><span>{{ now|timesince:item.0.end_time }} left</span></p>
+
+            {% if now > item.0.end_time %}
+                <p><span>Bidding has ended</span></p>
+            {% elif now > item.0.start_time %}
+                <p><span>{{ now|timesince:item.0.end_time }} left</span></p>
+            {% else %}
+                <p><span>{{ item.0.start_time|timesince:now }}</span></p>
+            {% endif %}
             
             {% if item.0.shipped %}
-            <button>Shipped</button>
+                <button>Shipped</button>
             {% elif item.0.paid %}
-            <button>Paid</button>
-            {% elif item.0.end_time|time < now|time %}
-            <a href="{% url 'bid' pk=item.0.pk %}" style="text-decoration: none;"><button>Bid</button></a>
+                <button>Paid</button>
+            {% elif item.0.end_time < now %}
+                <a href="{% url 'bid' pk=item.0.pk %}" style="text-decoration: none;"><button>Bid</button></a>
             {% else %}
-            <a href="{% url 'pay' pk=item.0.pk %}" style="text-decoration: none;"><button>Pay</button></a>
+                <a href="{% url 'pay' pk=item.0.pk %}" style="text-decoration: none;"><button>Pay</button></a>
             {% endif %}
 
         </div>

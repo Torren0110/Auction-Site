@@ -8,9 +8,9 @@
     <div class="bid-box">
         <div class="image">
             {% if item.1 %}
-            <img src="{{ item.1.photo.url }}"/>
+                <img src="{{ item.1.photo.url }}"/>
             {% else %}
-            <img src="{{ default_img_url }}"/>
+                <img src="{{ default_img_url }}"/>
             {% endif %}
         </div>
         <div class="prod-details">
@@ -28,33 +28,33 @@
             </div>
         </div>
         <div class="bid-details">
-            {% if item.0.current_bid and now|time > item.0.end_time|time %}
-            <p>Final Bid: <span>₹ {{ item.0.current_bid }}</span></p>
-            {% elif now|time > item.0.end_time|time %}
-            <p>NOT SOLD Initial Bid: <span>₹ {{ item.0.current_bid }}</span></p>
-            {% elif item.0.current_bid != NULL %}
-            <p>Initial Bid: <span>₹ {{ item.0.current_bid }}</span></p>
+            {% if item.0.current_bid and now > item.0.end_time %}
+                <p>SOLD <br> Final Bid: <span>₹ {{ item.0.current_bid }}</span></p>
+            {% elif item.0.current_bid %}
+                <p>Current Bid: <span>₹ {{ item.0.current_bid }}</span></p>
+            {% elif now > item.0.end_time %}
+                <p>NOT SOLD <br> Initial Bid: <span>₹ {{ item.0.initial_bid }}</span></p>
             {% else %}
-            <p>Start Bid: <span>₹ {{ item.0.initial_bid }}</span></p>
+                <p>Start Bid: <span>₹ {{ item.0.initial_bid }}</span></p>
             {% endif %}
 
 
             {% if now > item.0.end_time %}
-            <p><span>Bidding Ended</span></p>
+                <p><span>Bidding Ended</span></p>
             {% else %}
-            <p><span>{{ now|timesince:item.0.end_time }} left</span></p>
+                <p><span>{{ now|timesince:item.0.end_time }} left</span></p>
             {% endif %}
 
             {% if item.0.shipped %}
-            <a href = "#" style="text-decoration: none;"><button>Shipped</button></a>
+                <a href = "#" style="text-decoration: none;"><button>Shipped</button></a>
             {% elif item.0.paid %}
-            <a href = "{% url 'ship' pk=item.0.id %}" style="text-decoration: none;"><button>Ship</button></a>
+                <a href = "{% url 'ship' pk=item.0.id %}" style="text-decoration: none;"><button>Ship</button></a>
             {% elif item.0.current_bid and now > item.0.end_time %}
-            <a href = "#" style="text-decoration: none;"><button>Waiting For Payment</button></a>
+                <a href = "#" style="text-decoration: none;"><button>Waiting For Payment</button></a>
             {% elif now > item.0.end_time %}
-            <a href = "#" style="text-decoration: none;"><button>No Bids</button></a>
+                <a href = "#" style="text-decoration: none;"><button>No Bids</button></a>
             {% else %}
-            <a href = "{% url 'bid' pk=item.0.id %}" style="text-decoration: none;"><button>Bid</button></a>
+                <a href = "{% url 'bid' pk=item.0.id %}" style="text-decoration: none;"><button>Bid</button></a>
             {% endif %}
             
 

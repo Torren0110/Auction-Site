@@ -25,10 +25,16 @@
         <h2 class="portfolio" style="letter-spacing:none;"> <a style="text-decoration: none;" href="{% url 'home' %}"><span>auction</span></a> </h2>
 
           <div class="box">
-            <input type="text" name="" id="" placeholder="Search here...">
-            <a href="">
-              <i class="fas fa-search"></i>
-            </a>
+            <form action="/search/" method="get">
+                {% if searchString %}
+                    <input type="text" name="search_string" placeholder="Search here..." value="{{ searchString }}">
+                {% else %}
+                    <input type="text" name="search_string" placeholder="Search here...">
+                {% endif %}
+                <a href="">
+                    <i class="fas fa-search"></i>
+                </a>
+            </form>
           </div>
         
     <nav class="navbar">
